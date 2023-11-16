@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', verbose_name= _("parent"), blank= True, on_delete= models.CASCADE)
+    parent = models.ForeignKey('self', verbose_name= _("parent"), blank= True, null= True, on_delete= models.CASCADE)
     title = models.CharField(_('name'), max_length = 50)
     description = models.TextField(_('description'), blank= True)
     avatar = models.ImageField(_('avatar'), blank= True, upload_to= 'categories/')
@@ -16,11 +16,14 @@ class Category(models.Model):
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
 
+    def __str__(self):
+        return self.title
+
 class Product(models.Model):
     title = models.CharField(_('name'), max_length = 50)
     description = models.TextField(_('description'), blank= True)
     avatar = models.ImageField(_('avatar'), blank= True, upload_to= 'products/')
-    category = models.ManyToManyField('Category', verbose_name= _('categories'), blank= True)
+    categories = models.ManyToManyField('Category', verbose_name= _('categories'), blank= True)
     is_enable = models.BooleanField(_('is enable'), default= True)
     created_time = models.DateTimeField(_('created time'), auto_now_add= True)
     updated_time = models.DateTimeField(_('update'), auto_now_add = True)

@@ -3,3 +3,5 @@ env/
 *.pyc
 media/
 db.sqlite3
+
+local_setting

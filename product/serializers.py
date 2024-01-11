@@ -20,8 +20,10 @@ class FileSerializers(serializers.ModelSerializer):
 
 class ProductSerializes(serializers.HyperlinkedModelSerializer):
     categories = CategorySerializers(many = True)
-    file_set = FileSerializers(many = True)
+    # file_set = FileSerializers(many = True)
+
+# 'file_set was delete becuse do authentication'
 
     class Meta:
         model = Product
-        fields = ['id','title', 'description', 'avatar', 'categories', 'file_set', 'url']
+        fields = ['id','title', 'description', 'avatar', 'categories', 'url']

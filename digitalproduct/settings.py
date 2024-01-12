@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     'product',
-    'users'
-
+    'users',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [
